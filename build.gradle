@@ -1,0 +1,40 @@
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile group: 'com.google.guava', name: 'guava', version: '14.0'
+        compile group: 'junit', name:'junit', version:'4.8.2'
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDir 'src/java'
+            }
+            resources {
+                srcDir 'src/resources'
+            }
+        }
+    }
+
+    task('init') {
+        def sourceFile = new File("src/java")
+        def resourceFile = new File("src/resources")
+        if (!sourceFile.exists()) {
+            sourceFile.mkdirs()
+        } else {
+            println "src/java already exist."
+        }
+        if (!resourceFile.exists()) {
+            resourceFile.mkdirs()
+        } else {
+            println "src/resources already exist."
+        }
+    }
+}
+
